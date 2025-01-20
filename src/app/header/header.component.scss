@@ -1,0 +1,15 @@
+:host {
+
+  width: 100%; /* Nimmt die volle Breite des übergeordneten Containers ein */
+  background-color: lightblue; /* Setzt die Hintergrundfarbe auf Hellblau */
+  display: block; /* Definiert das Element als Blockelement */
+  color: white; /* Setzt die Textfarbe auf Weiß */
+  padding: 5px; /* Fügt einen Innenabstand (Padding) hinzu, jedoch nur für größere Bildschirme */
+
+  @media (min-width: 700px) {
+    width: 80%; /* Reduziert die Breite auf 80% für Bildschirme mit einer Breite von mindestens 700px */
+    max-width: 1000px; /* Begrenzung der maximalen Breite auf 1000px */
+    margin: 0 auto; /* Zentriert das Element horizontal im Container */
+  }
+
+}
