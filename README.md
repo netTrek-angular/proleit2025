@@ -2,7 +2,18 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
 
+## gitHub Repo
+
+To set up this project via [GitHub Repository](https://github.com/netTrek-angular/proleit2025)
+- https://github.com/netTrek-angular/proleit2025
+```bash
+git clone https://github.com/netTrek-angular/proleit2025.git
+```
+
 ## create Project
+
+To set up this project with Angular CLI
+
 ```bash
 ng new proleit --prefix pl
 ```
