@@ -1,1 +1,21 @@
+
 /* You can add global styles to this file, and also import other style files */
+/* Global CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+}
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+input, button, textarea, select {
+  font: inherit;
+}
