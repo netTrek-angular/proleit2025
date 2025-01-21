@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'pl-countdown',
@@ -37,6 +37,16 @@ export class CountdownComponent {
       }
       this.jusify = this.percent > 10 ? 'right' : 'left';
     }, 100 )
+  }
+
+  @HostListener('click', ['$event'] )
+  private toggleMode ( event: MouseEvent) {
+    console.log(event);
+    if ( this.timerID ) {
+      this.stopTimer();
+    } else {
+      this.startTimer()
+    }
   }
 
   private stopTimer () {
