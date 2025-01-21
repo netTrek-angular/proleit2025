@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnDestroy} from '@angular/core';
 
 @Component({
   selector: 'pl-countdown',
@@ -7,7 +7,7 @@ import {Component, HostListener} from '@angular/core';
   templateUrl: './countdown.component.html',
   styleUrl: './countdown.component.scss'
 })
-export class CountdownComponent {
+export class CountdownComponent implements OnDestroy {
 
   static readonly MODE_PROGRESS = 'progress';
   static readonly MODE_COUNTDOWN = 'countdown';
@@ -68,5 +68,9 @@ export class CountdownComponent {
     if ( this.percent === 0 ) {
       this.stopTimer();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.stopTimer();
   }
 }
