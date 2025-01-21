@@ -1,0 +1,5 @@
+button {
+  &.active {  // entspricht button.active in CSS!
+    background-color: red;
+  }
+}

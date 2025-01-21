@@ -1,0 +1,56 @@
+<p>bindings works!</p>
+<p>{{ 1 + 1 }}</p> <!--- nicht im echten Leben -->
+<p> {{ firstName }}</p>
+<p>Vorname:= {{ firstName }}</p>
+
+<!--
+<h2>{{selectedIndex}}</h2>
+-->
+
+<!--
+<button>{{userObj.name}}</button>
+<button>{{users[0].name}}</button>
+
+-->
+
+<ul>
+  @for (user of users; track user.id  ) {
+   <li><button (click)="select(user.id)" [class.active]="selectedIndex===user.id" [disabled]="selectedIndex===user.id" >{{user.name}}</button></li>
+  }
+</ul>
+
+
+
+<div [innerHTML]="htmlContent" [style.color]="fontColor"> </div>
+<img [attr.src]="imgPath" alt="Katze" [style.width.%]="widthInPercent"> <!-- verwendet unter der haube setAttribute -->
+<img id="ngImg" [attr.src]="imgPath" alt="Katze" [style.width]="widthInPercent + '%'" > <!-- verwendet unter der haube setAttribute -->
+<img id="myImg" src="images/cat2.jpg" alt="Katzenbild">
+<img src="images/{{imgName}}}" alt="Katzenbild">
+<img [src]="imgPath" alt="Katze"> <!-- die eigenscgaft wird geändert document.getElementById('testImg').src= -->
+<img [attr.src]="imgPath" alt="Katze"> <!-- die eigenscgaft wird geändert document.getElementById('testImg').src= -->
+<img id="testImg" [src]="'images/' +  imgPath" alt="Katze"> <!-- die eigenscgaft wird geändert document.getElementById('testImg').src= -->
+<input id="myInput" value="Hallo">
+<!--
+!!! Die Eingenschaft und das Attribut sind Inital Hallo
+document.getElementById('myInput').value // Hallo
+document.getElementById('myInput').getAttribute('value') // Hallo
+
+!!! Wenn ich die Eigenschaft ändere
+document.getElementById('myInput').value = 'Welt';
+!!! Ändert sich NICHT der Wert im DOM
+<input id="myInput" value="Hallo">
+!!! Der Attributwert bleibt unverändert
+document.getElementById('myInput').getAttribute('value') // Hallo
+!!! Obgleich die Eigenschaft definitiv anders ist
+document.getElementById('myInput').value // Welt
+
+!!! Ändere ich das Attribut - Ändert sich Attribut und Eigenschaft
+document.getElementById('myInput').setAttribute('value', 'Saban')
+document.getElementById('myInput').getAttribute('value') // Saban
+document.getElementById('myInput').value // Saban
+<input id="myInput" value="Saban">
+
+
+!!! Gibt der Benutzer etwas ein! Ändert sich nur die Eigenschaft nicht das attribut
+-->
+
