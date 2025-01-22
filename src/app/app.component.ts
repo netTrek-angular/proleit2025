@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 // import {HelloWorldComponent} from './hello-world.component';
 import {HeaderComponent} from './header/header.component';
 import {UserComponent} from './user/user.component';
+import {NiceButtonComponent} from './utils/nice-button/nice-button.component';
+import {NiceIconComponent} from './utils/nice-icon/nice-icon.component';
 /*
 import {BindingsComponent} from './samples/bindings/bindings.component';
 import {CountdownComponent} from './samples/countdown/countdown.component';
@@ -16,6 +18,8 @@ import {CountdownComponent} from './samples/countdown/countdown.component';
     // HelloWorldComponent,
     HeaderComponent,
     UserComponent,
+    NiceButtonComponent,
+    NiceIconComponent,
     // BindingsComponent,
     // CountdownComponent,
     // StepperComponent
