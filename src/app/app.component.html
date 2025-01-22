@@ -1,11 +1,16 @@
 <pl-header></pl-header>
 
 <main>
-  <!--// das ist der ViewContainer des button[plAdminOnly] daruntzer-->
+
+  <pl-pipes></pl-pipes>
+
+  <!--
+
+
+  // das ist der ViewContainer des button[plAdminOnly] daruntzer
   <button *plAdminOnly plDanger="hello word">hellow worl</button>
   <button [plDanger]="title" (confirmed)="doDangerStuf()">{{title}}</button>
   <pl-user> </pl-user>
-  <!--
   <pl-stepper name="das" [startValue]="10"></pl-stepper>
   <hr>
   <pl-if-and-for></pl-if-and-for>

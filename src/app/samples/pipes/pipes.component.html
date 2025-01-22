@@ -1,0 +1,28 @@
+<p>pipes works!</p>
+
+<hr>
+<ul>
+  <li>{{stringSample | prefix : 'tolle sache'}}</li>
+  <li>{{stringSample | uppercase}}</li>
+  <li>{{stringSample | lowercase}}</li>
+</ul>
+<hr>
+<ul>
+  <li>{{dateSample}}</li>
+  <li>{{dateSample | date }}</li>
+  <li>{{dateSample | date : 'dd.MM.yyyy hh:mm' : '+0400' : 'de' }}</li>
+  <li>{{dateSample | date : 'long'}}</li>
+  <li>{{dateSample | date : 'short'}}</li>
+  <li>{{dateSample | date : 'medium'}}</li>
+  <li>{{dateSample | date : 'd.M.yy'}}</li>
+  <li>{{dateSample | date : 'dd.MM.yyyy hh:mm'}}</li>
+</ul>
+<hr>
+<ul>
+  <li>{{numberSample}}</li>
+  <li>{{numberSample | currency }}</li>
+  <li>{{numberSample | currency : 'EUR' : 'symbol' : '.5' }}</li>
+  <li>{{numberSample | currency : 'EUR' : 'symbol' : '2.5' : 'de' }}</li>
+  <li>{{numberSample | number}}</li>
+</ul>
+<hr>
