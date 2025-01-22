@@ -7,6 +7,8 @@ import {NiceButtonComponent} from './utils/nice-button/nice-button.component';
 import {NiceIconComponent} from './utils/nice-icon/nice-icon.component';
 import {IfAndForComponent} from './samples/if-and-for/if-and-for.component';
 import {StepperComponent} from './samples/stepper/stepper.component';
+import {AdminOnlyDirective} from './utils/admin-only.directive';
+import {DangerDirective} from './utils/danger.directive';
 /*
 import {BindingsComponent} from './samples/bindings/bindings.component';
 import {CountdownComponent} from './samples/countdown/countdown.component';
@@ -25,7 +27,9 @@ import {CountdownComponent} from './samples/countdown/countdown.component';
     IfAndForComponent,
     // BindingsComponent,
     // CountdownComponent,
-    StepperComponent
+    StepperComponent,
+    AdminOnlyDirective,
+    DangerDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -36,4 +40,7 @@ export class AppComponent {
 /*  logNewVal(stepperVal: number) {
     console.log('new stepper value: ' + stepperVal);
   }*/
+  doDangerStuf() {
+    console.log('doing danger stuff');
+  }
 }

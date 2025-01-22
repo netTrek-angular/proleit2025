@@ -4,5 +4,9 @@
 
 
 <button (click)="addUser()">Add User</button> |
-<button (click)="delUser()">Del Selected User</button> |
-<button (click)="delAll()">Del All User</button>
+@if (this.users().length > 0) {
+  @if (this.selectedUsr ) {
+    <button (confirmed)="delUser()" plDanger="willst den dene User wirtklick löschen?">Del Selected User</button> |
+  }
+  <button (confirmed)="delAll()" plDanger>Del All User</button>
+}

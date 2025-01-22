@@ -1,11 +1,13 @@
 import {Component, computed, signal} from '@angular/core';
 import {User} from './user';
 import {UserListComponent} from './user-list/user-list.component';
+import {DangerDirective} from '../utils/danger.directive';
 
 @Component({
   selector: 'pl-user',
   imports: [
-    UserListComponent
+    UserListComponent,
+    DangerDirective
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
@@ -24,7 +26,7 @@ export class UserComponent {
     return lastUserID;
   });
 
-  private selectedUsr: User | undefined;
+  selectedUsr: User | undefined;
 
   addUser() {
     this.users.update( users =>
@@ -42,6 +44,7 @@ export class UserComponent {
     user = user || this.selectedUsr;
     if (user) {
       this.users.update( users => users.filter( u => u.id !== user.id));
+      this.selectedUsr = undefined;
     }
   }
 
@@ -52,9 +55,10 @@ export class UserComponent {
 
   delUserById(id: number) {
     this.users.update( users => users.filter( u => u.id !== id));
+    this.selectedUsr = undefined;
   }
 
   usrSelected(selectedUsr: User | undefined) {
-    this.selectedUsr = selectedUsr;
+    this.selectedUsr = this.selectedUsr === selectedUsr ? undefined : selectedUsr;
   }
 }
