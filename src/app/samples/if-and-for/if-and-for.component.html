@@ -1,0 +1,43 @@
+<p>if-and-for works!</p>
+<!--
+<span *ngIf="showImg()">Hallo Welt</span>
+
+
+<ng-container *ngIf="showImg(); else noImg">
+  Es gibt ein Bild
+</ng-container>
+
+<ng-template #noImg>
+  Es gibt kein Bild
+</ng-template>
+-->
+
+<!--
+-->
+@if ( showImg() ) {
+  Es gibt ein Bild
+} @else {
+  Es gibt kein Bild
+}
+
+<ul>
+  <!--<li *ngFor="let usr of users(); index as i; last as l; even as e ">{{i}}#{{l}}#{{e}} {{usr.name}}</li>-->
+  @for (user of users(); track user.id; let i = $index; let l = $last; let e = $even) {
+    <li>{{i}}#{{l}}#{{e}} {{user.name}}</li>
+  }
+</ul>
+
+
+<!--
+
+<hr>
+<img *ngIf="showImg()"
+     src="images/cat2.jpg" alt="Katzenbild"
+>
+
+@if ( showImg() ) {
+  <img src="images/cat1.jpg" alt="Katzenbild">
+}
+-->
+
+<button (click)="toggleImg()">toggle</button>

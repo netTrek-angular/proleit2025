@@ -1,1 +1,9 @@
 {{user().name}}
+@if (user().avatar && user().avatar?.indexOf('http') === -1 )  {
+  <img src="images/{{user().avatar}}"
+       alt="Avatar Bild vom User {{user().name}}">
+} @else if (user().avatar && user().avatar?.indexOf('http') === 0 )  {
+  <img src="{{user().avatar}}"
+       alt="Avatar Bild vom User {{user().name}}">
+} @else {
+}

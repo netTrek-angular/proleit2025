@@ -27,7 +27,15 @@ export class UserComponent {
   private selectedUsr: User | undefined;
 
   addUser() {
-    this.users.update( users => [...users, {name: `user ${this.lastID()+1}`, age: 28, id: this.lastID()+1}]);
+    this.users.update( users =>
+      [...users,
+        {
+          name: `user ${this.lastID()+1}`,
+          age: 28 + this.lastID(),
+          id: this.lastID()+1,
+          avatar: `https://placecats.com/${this.lastID()}/${this.lastID()}`
+        }
+      ]);
   }
 
   delUser(user?: User) {

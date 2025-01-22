@@ -36,7 +36,6 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('after view init', this.firstItem()?.user().name );
   }
 
-
   firstItem = viewChild <UserListItemComponent>( UserListItemComponent );
   firstElemEffRef = effect( () => {
     console.log(this.firstItem()?.user().name );

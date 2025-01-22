@@ -1,4 +1,15 @@
 <p [class.even]="even()">{{name()}} {{currentStep()}}</p>
+<!--
+
+@if (currentStep() % 3 === 1) {
+  <p>rest ist 1</p>
+} @else if (currentStep() % 3 === 2) {
+  <p>rest ist 2</p>
+} @else {
+  <p>rest ist 0</p>
+}
+-->
+
 
 <button (click)="increment()">increment</button> |
 <button (click)="decrement()">decrement</button> |

@@ -13,4 +13,11 @@
     color: white;
     // cursor: not-allowed;
   }
+
+  img {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; /* Rundes Bild */
+    float: right; /* Rechtsbündigkeit */
+  }
 }
