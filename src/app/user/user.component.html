@@ -1,2 +1,8 @@
-<h1>{{name}}</h1>
-<button (click)="chgName()">Ändern</button>
+<h1>user</h1>
+
+<pl-user-list [users]="users()" (userSelected)="usrSelected($event)"></pl-user-list>
+
+
+<button (click)="addUser()">Add User</button> |
+<button (click)="delUser()">Del Selected User</button> |
+<button (click)="delAll()">Del All User</button>

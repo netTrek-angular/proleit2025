@@ -1,4 +1,4 @@
-import {Component, computed, effect, input, OnDestroy, OnInit, output, signal} from '@angular/core';
+import {Component, computed, effect, HostBinding, input, OnDestroy, OnInit, output, signal} from '@angular/core';
 
 @Component({
   selector: 'pl-stepper',
@@ -7,6 +7,10 @@ import {Component, computed, effect, input, OnDestroy, OnInit, output, signal} f
   styleUrl: './stepper.component.scss'
 })
 export class StepperComponent implements OnDestroy, OnInit {
+
+
+  @HostBinding('style.background-color')
+  stepBackgroundColor = 'lightblue';
 
   valueChanged = output<number>()
   //#region
@@ -22,6 +26,7 @@ export class StepperComponent implements OnDestroy, OnInit {
   private stepEffectRef = effect( () => {
     // console.log( 'step changed', this.currentStep() );
     this.valueChanged.emit( this.currentStep() );
+    this.stepBackgroundColor = this.currentStep() % 2 === 0 ? 'lightblue' : 'lightgreen';
   });
 
   increment() {
