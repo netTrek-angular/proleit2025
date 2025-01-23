@@ -1,6 +1,8 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {BehaviorSubject, filter, fromEvent, map, Observable, of, Subject, take, tap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../../user/user';
 
 @Component({
   selector: 'pl-rxjs',
@@ -11,14 +13,28 @@ import {AsyncPipe} from '@angular/common';
   styleUrl: './rxjs.component.scss'
 })
 export class RxjsComponent implements OnInit{
+
+  readonly http = inject( HttpClient );
+
   mySignal?: WritableSignal<number>;
   mySubject$?: BehaviorSubject<number>;
+
   ngOnInit(): void {
     // this.initOfSample()
-    this.initEventSample()
-    this.initSubject ();
+    // this.initEventSample()
+    // this.initSubject ();
+    this.initHttpSample ();
   }
 
+  private initHttpSample () {
+    const myObservable$ = this.http.get<User[]>('http://localhost:3000/users');
+    this.subscribe( myObservable$ )
+    this.subscribe( this.http.post<User>(
+      'http://localhost:3000/users',
+      {name: 'Frank Zander', age: 47, avatar: 'cat2.jpg'}
+    ) )
+
+  }
 
 
   private initEventSample () {

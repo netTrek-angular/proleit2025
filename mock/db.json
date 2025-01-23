@@ -23,6 +23,12 @@
       "name": "Frank",
       "age": 12,
       "admin": true
+    },
+    {
+      "id": "0d9d",
+      "name": "Frank Zander",
+      "age": 47,
+      "avatar": "cat2.jpg"
     }
   ]
 }
