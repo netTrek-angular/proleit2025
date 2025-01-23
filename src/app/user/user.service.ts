@@ -1,23 +1,20 @@
-import {computed, Injectable, signal} from '@angular/core';
-import {User} from './user';
+import {computed, inject, Injectable, signal} from '@angular/core';
+import {User, UserSubset} from './user';
+import {HttpClient} from '@angular/common/http';
+import {BASE_URL} from '../app.config';
+import {forkJoin} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private _users = signal<User[]>([
-    {name: "Saban", age: 25, id: 1, avatar: 'cat1.jpg'},
-    {name: "Peter", age: 26, id: 2, avatar: 'cat2.jpg'},
-    {name: "Mary", age: 27, id: 3}
-  ]);
+  private readonly endpoint = 'users';
+  private readonly baseUrl = inject( BASE_URL );
+  private readonly url = `${this.baseUrl}/${this.endpoint}`;
+  readonly http = inject( HttpClient );
 
-  private lastID = computed(() => {
-    let lastUserID = 0;
-    this._users().forEach( usr => lastUserID = Math.max( lastUserID, usr.id));
-    return lastUserID;
-  });
-
+  private _users = signal<User[]>([ ]);
   private _selectedUsr = signal<User | undefined>( undefined );
 
   get users () {
@@ -28,36 +25,80 @@ export class UserService {
     return this._selectedUsr.asReadonly();
   }
 
+  constructor() {
+    this.refreshUsrData();
+  }
+
+  refreshUsrData() {
+    this.http.get<User[]>(this.url).subscribe(
+      (users: User[]) => {
+        this._users.set(users);
+        if ( this.selectedUsr () ) {
+          const selectedUsr = this.selectedUsr ();
+          const foundedUsr = users.find( usr => usr.id === selectedUsr!.id );
+          if ( foundedUsr )
+            this.setSelectedUsr (foundedUsr);
+          else
+            this.setSelectedUsr (undefined) ;
+        }
+      }
+    )
+  }
+
   setSelectedUsr(selectedUsr: User | undefined) {
     this._selectedUsr.set(selectedUsr);
   }
 
-  addUser() {
-    this._users.update( users =>
-      [...users,
+  addUser() { //todo add usr: User
+    const uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    this.http.post<User>( this.url,
         {
-          name: `user ${this.lastID()+1}`,
-          age: 28 + this.lastID(),
-          id: this.lastID()+1,
-          avatar: `https://placecats.com/${this.lastID()}/${this.lastID()}`
+          name: `user ${uuid}`,
+          age: 28,
+          admin: true
         }
-      ]);
+      ).subscribe( {
+      next: (user: User) => { this.setSelectedUsr ( user )},
+      complete: () => this.refreshUsrData()
+    })
   }
 
   delUser(user2Del: User) {
-    this._users.update( users => users.filter( u => u.id !== user2Del.id));
-    if ( this._selectedUsr()?.id === user2Del.id )
-      this.setSelectedUsr (undefined) ;
+    this.delUserById(user2Del.id);
   }
 
   delAll () {
-    this._users.set([]);
-    this.setSelectedUsr (undefined) ;
+    // this._users.set([]);
+
+    // Create an RxJS zip of all delUser calls to delete all user records
+    const userDeleteRequests = this.users().map(user =>
+      this.http.delete(`${this.url}/${user.id}`)
+    );
+
+    // Trigger all HTTP delete requests
+    forkJoin(userDeleteRequests).subscribe({
+      complete: () => {
+        this.refreshUsrData(); // Refresh the user data once all deletions are complete
+        this.setSelectedUsr(undefined); // Clear the selected user
+      }
+    });
   }
 
   delUserById(id: number) {
-    this._users.update( users => users.filter( u => u.id !== id));
-    if ( this._selectedUsr()?.id === id )
-      this.setSelectedUsr (undefined) ;
+    this.http.delete( `${this.url}/${id}` ).subscribe( {
+      complete: () => this.refreshUsrData()
+    })
+  }
+
+  updateUser(user: User) {
+    this.http.put( `${this.url}/${user.id}`, user ).subscribe( {
+      complete: () => this.refreshUsrData()
+    })
+  }
+
+  patchUser(user: UserSubset) {
+    this.http.patch( `${this.url}/${user.id}`, user ).subscribe( {
+      complete: () => this.refreshUsrData()
+    })
   }
 }

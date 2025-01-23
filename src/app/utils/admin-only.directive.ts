@@ -14,18 +14,13 @@ export class AdminOnlyDirective implements OnInit{
   private readonly baseUrl = inject( BASE_URL ); // injiziere die Local ID aus dem Root Provider
   private readonly $user = inject( UserService ); // injiziere die Local ID aus dem Root Provider
   private readonly isAdmin = computed(() => {
-    const usr = this.$user.selectedUsr()?.name;
-    return  usr === 'Mary' || usr === 'Saban';
+    const admin = this.$user.selectedUsr()?.admin === true;
+    console.log(admin);
+    return admin;
   });
   private readonly isAdminEffRed = effect(() => {
     this.render( this.isAdmin() )
   })
-  /*
-  private get isAdmin () {
-    return this.baseUrl.trim().toLowerCase().startsWith( 'https://example.com');
-    // return true:
-  };
-  */
 
   ngOnDestroy(): void {
     this.isAdminEffRed.destroy()

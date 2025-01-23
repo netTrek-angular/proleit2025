@@ -14,7 +14,7 @@ export const BASE_URL = new InjectionToken<string> ('Token 4 Base URL');
 
 export const appConfig: ApplicationConfig = { // root injector
   providers: [
-    { provide: BASE_URL, useValue: 'https://example.com' }, //static Provider - value provider
+    { provide: BASE_URL, useValue: 'http://localhost:3000' }, //static Provider - value provider
     { provide: LOCALE_ID, useValue: 'de'}, //static Provider - value provider
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
     provideZoneChangeDetection({ eventCoalescing: true }),

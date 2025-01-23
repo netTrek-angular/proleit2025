@@ -1,34 +1,17 @@
 {
   "users": [
     {
-      "name": "Saban",
-      "age": 25,
-      "id": "1",
-      "avatar": "cat1.jpg",
-      "admin": true
-    },
-    {
       "name": "Peter",
       "age": 26,
       "id": "2",
+      "admin": true,
       "avatar": "cat2.jpg"
     },
     {
-      "name": "Mary",
-      "age": 27,
-      "id": "3"
-    },
-    {
-      "id": "4",
-      "name": "Frank",
-      "age": 12,
+      "id": "e9bb",
+      "name": "user 0q889kf1l8387tc1y28nb7",
+      "age": 28,
       "admin": true
-    },
-    {
-      "id": "0d9d",
-      "name": "Frank Zander",
-      "age": 47,
-      "avatar": "cat2.jpg"
     }
   ]
 }
