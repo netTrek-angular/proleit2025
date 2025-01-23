@@ -15,7 +15,6 @@ export class AdminOnlyDirective implements OnInit{
   private readonly $user = inject( UserService ); // injiziere die Local ID aus dem Root Provider
   private readonly isAdmin = computed(() => {
     const admin = this.$user.selectedUsr()?.admin === true;
-    console.log(admin);
     return admin;
   });
   private readonly isAdminEffRed = effect(() => {

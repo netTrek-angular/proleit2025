@@ -58,13 +58,13 @@ export class UserService {
           admin: true
         }
       ).subscribe( {
-      next: (user: User) => { this.setSelectedUsr ( user )},
+      next: (user: User) => { this.setSelectedUsr ( user ); console.log(user);},
       complete: () => this.refreshUsrData()
     })
   }
 
   delUser(user2Del: User) {
-    this.delUserById(user2Del.id);
+    this.delUserById(user2Del.id!);
   }
 
   delAll () {
@@ -84,7 +84,7 @@ export class UserService {
     });
   }
 
-  delUserById(id: number) {
+  delUserById(id: string) {
     this.http.delete( `${this.url}/${id}` ).subscribe( {
       complete: () => this.refreshUsrData()
     })

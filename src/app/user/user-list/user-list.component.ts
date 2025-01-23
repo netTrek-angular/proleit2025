@@ -2,6 +2,7 @@ import {
   /*AfterViewInit,*/
   Component,
   effect,
+  inject,
   input,
   OnDestroy,
   /*OnInit,*/
@@ -12,6 +13,7 @@ import {
 } from '@angular/core';
 import {User} from '../user';
 import {UserListItemComponent} from './user-list-item/user-list-item.component';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'pl-user-list',
@@ -22,6 +24,7 @@ import {UserListItemComponent} from './user-list-item/user-list-item.component';
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
+
 
   ngOnDestroy(): void {
     this.firstElemEffRef.destroy();
@@ -46,6 +49,12 @@ export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
   itemsEffRef = effect( () => {
     // console.log(this.items() );
   });
+  readonly user$ = inject ( UserService );
+  private readonly userEffRef = effect( () => {
+    if ( this.user$.selectedUsr() && this.user$.selectedUsr() !== this.selectedUser()) {
+      this.selectUsr( this.user$.selectedUsr()! );
+    }
+  })
 
   users = input.required<User[]>()  ;
   userSelected = output<User | undefined>();

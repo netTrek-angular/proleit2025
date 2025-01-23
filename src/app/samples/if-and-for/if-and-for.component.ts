@@ -15,9 +15,9 @@ export class IfAndForComponent {
   showImg = signal(true);
 
   users = signal<User[]>([
-    {name: "Saban", age: 25, id: 1, avatar: 'cat1.jpg'},
-    {name: "Peter", age: 26, id: 2, avatar: 'cat2.jpg'},
-    {name: "Mary", age: 27, id: 3}
+    {name: "Saban", age: 25, id: '1', avatar: 'cat1.jpg'},
+    {name: "Peter", age: 26, id: '2', avatar: 'cat2.jpg'},
+    {name: "Mary", age: 27, id: '3'}
   ]);
 
   toggleImg() {
