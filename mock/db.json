@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "Saban",
+      "age": 25,
+      "id": "1",
+      "avatar": "cat1.jpg",
+      "admin": true
+    },
+    {
+      "name": "Peter",
+      "age": 26,
+      "id": "2",
+      "avatar": "cat2.jpg"
+    },
+    {
+      "name": "Mary",
+      "age": 27,
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "name": "Frank",
+      "age": 12,
+      "admin": true
+    }
+  ]
+}

@@ -1,12 +1,17 @@
 <h1>user</h1>
+<!--
 
-<pl-user-list [users]="users()" (userSelected)="usrSelected($event)"></pl-user-list>
+<h1>user {{locale}} {{baseUrl}} {{$users.name}}</h1>
+-->
 
+<pl-user-list [users]="$users.users()" (userSelected)="usrSelected($event)"></pl-user-list>
 
-<button (click)="addUser()">Add User</button> |
-@if (this.users().length > 0) {
-  @if (this.selectedUsr ) {
-    <button (confirmed)="delUser()" plDanger="willst den dene User wirtklick löschen?">Del Selected User</button> |
+<ng-container *plAdminOnly>
+  <button (click)="$users.addUser()">Add User</button> @if ($users.users().length > 0) { |
+    @let selectedUsr = $users.selectedUsr();
+    @if (selectedUsr ) {
+      <button (confirmed)="$users.delUser( selectedUsr! )" plDanger="willst den dene User wirtklick löschen?">Del Selected User</button> |
+    }
+    <button (confirmed)="$users.delAll()" plDanger>Del All User</button>
   }
-  <button (confirmed)="delAll()" plDanger>Del All User</button>
-}
+</ng-container>

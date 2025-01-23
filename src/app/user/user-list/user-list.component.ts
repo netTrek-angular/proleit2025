@@ -1,10 +1,10 @@
 import {
-  AfterViewInit,
+  /*AfterViewInit,*/
   Component,
   effect,
   input,
   OnDestroy,
-  OnInit,
+  /*OnInit,*/
   output,
   signal,
   viewChild,
@@ -21,20 +21,22 @@ import {UserListItemComponent} from './user-list-item/user-list-item.component';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
-export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
 
   ngOnDestroy(): void {
     this.firstElemEffRef.destroy();
     this.itemsEffRef.destroy();
   }
+/*
 
   ngOnInit(): void {
-    console.log('on init', this.firstItem()?.user().name );
+    // console.log('on init', this.firstItem()?.user().name );
   }
 
   ngAfterViewInit(): void {
-    console.log('after view init', this.firstItem()?.user().name );
+    // console.log('after view init', this.firstItem()?.user().name );
   }
+*/
 
   firstItem = viewChild <UserListItemComponent>( UserListItemComponent );
   firstElemEffRef = effect( () => {
@@ -42,7 +44,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   });
   items = viewChildren( UserListItemComponent);
   itemsEffRef = effect( () => {
-    console.log(this.items() );
+    // console.log(this.items() );
   });
 
   users = input.required<User[]>()  ;

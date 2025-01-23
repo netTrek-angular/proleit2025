@@ -1,4 +1,9 @@
 <header>
-  <h1>Hello Prolite</h1>
+  @let usrName = $user.selectedUsr()?.name;
+  @if (usrName) {
+    <h1>Hello {{usrName}}&#64;Prolite</h1>
+  } @else {
+    <h1>Hello Prolite</h1>
+  }
 </header>
 

@@ -1,64 +1,28 @@
-import {Component, computed, signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {User} from './user';
 import {UserListComponent} from './user-list/user-list.component';
 import {DangerDirective} from '../utils/danger.directive';
+import {UserService} from './user.service';
+import {AdminOnlyDirective} from '../utils/admin-only.directive';
 
 @Component({
   selector: 'pl-user',
   imports: [
     UserListComponent,
-    DangerDirective
+    DangerDirective,
+    AdminOnlyDirective
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-
-  users = signal<User[]>([
-    {name: "Saban", age: 25, id: 1, avatar: 'cat1.jpg'},
-    {name: "Peter", age: 26, id: 2, avatar: 'cat2.jpg'},
-    {name: "Mary", age: 27, id: 3}
-  ]);
-
-  lastID = computed(() => {
-    let lastUserID = 0;
-    this.users().forEach( usr => lastUserID = Math.max( lastUserID, usr.id));
-    return lastUserID;
-  });
-
-  selectedUsr: User | undefined;
-
-  addUser() {
-    this.users.update( users =>
-      [...users,
-        {
-          name: `user ${this.lastID()+1}`,
-          age: 28 + this.lastID(),
-          id: this.lastID()+1,
-          avatar: `https://placecats.com/${this.lastID()}/${this.lastID()}`
-        }
-      ]);
-  }
-
-  delUser(user?: User) {
-    user = user || this.selectedUsr;
-    if (user) {
-      this.users.update( users => users.filter( u => u.id !== user.id));
-      this.selectedUsr = undefined;
-    }
-  }
-
-  delAll () {
-    this.users.set([]);
-    this.selectedUsr = undefined;
-  }
-
-  delUserById(id: number) {
-    this.users.update( users => users.filter( u => u.id !== id));
-    this.selectedUsr = undefined;
-  }
+/*
+  readonly locale = inject( LOCALE_ID ); // injiziere die Local ID aus dem Root Provider
+  readonly baseUrl = inject( BASE_URL ); // injiziere die Local ID aus dem Root Provider
+  */
+  readonly $users = inject(UserService);
 
   usrSelected(selectedUsr: User | undefined) {
-    this.selectedUsr = this.selectedUsr === selectedUsr ? undefined : selectedUsr;
+    this.$users.setSelectedUsr( this.$users.selectedUsr() === selectedUsr ? undefined : selectedUsr);
   }
 }
