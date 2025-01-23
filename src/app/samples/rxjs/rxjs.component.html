@@ -1,0 +1,7 @@
+<p>rxjs works!</p>
+@if (mySignal && mySignal()) {
+  <p>{{mySignal()}}</p>
+}
+@if (mySubject$) {
+  <p>{{mySubject$ | async}}</p>
+}
