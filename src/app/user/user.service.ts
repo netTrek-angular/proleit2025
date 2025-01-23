@@ -1,4 +1,4 @@
-import {computed, inject, Injectable, signal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {User, UserSubset} from './user';
 import {HttpClient} from '@angular/common/http';
 import {BASE_URL} from '../app.config';
@@ -85,7 +85,7 @@ export class UserService {
   }
 
   delUserById(id: string) {
-    this.http.delete( `${this.url}/${id}` ).subscribe( {
+    this.http.delete( `${this.url}/${id}asjjhgdjkahsgdjkhasgdkjhgasjhk` ).subscribe( {
       complete: () => this.refreshUsrData()
     })
   }

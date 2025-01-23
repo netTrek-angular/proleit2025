@@ -51,6 +51,7 @@ export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
   });
   readonly user$ = inject ( UserService );
   private readonly userEffRef = effect( () => {
+    // kann nur passieren, wenn du den User Service eine automatische neu Selektierung stattfindet!
     if ( this.user$.selectedUsr() && this.user$.selectedUsr() !== this.selectedUser()) {
       this.selectUsr( this.user$.selectedUsr()! );
     }
