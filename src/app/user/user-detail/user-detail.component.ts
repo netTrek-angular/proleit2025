@@ -15,9 +15,7 @@ import {JsonPipe} from '@angular/common';
 export class UserDetailComponent {
 
   private readonly $users = inject(UserService);
-
   id = input.required<number | string> ();
-
   user = computed( () => this.$users.getUserById( this.id().toString() ) );
 
 }

@@ -8,7 +8,12 @@ import {UserAddComponent} from './user/user-add/user-add.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },   // domain/
   // { path: 'home', component: HomeComponent },
-  { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)},
+  { path: 'home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+    data: {
+      haveFun: 'Hellow'   // jedes key im data Objekt ist via Imput in der Komponente erreichbar
+    }
+  },
   { path: 'user', component: UserComponent,                       // domain/user
     children: [                                                   // dard ich nur Niutzen wenn die HTML der UserComponetn ein router-outlet verfügt
       { path: 'show/:id', component: UserDetailComponent },            // domain/user/show/[idDesUSer]                  Detainansiihct
