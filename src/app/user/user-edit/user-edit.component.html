@@ -1,4 +1,10 @@
-<p>user-edit works!</p>
+@let usr = user();
+@if ( usr ) {
+  <h1>Hello {{usr.name}}</h1>
+} @else {
+  <h1>Hello</h1>
+}
+<p>{{user() | json}}</p>
 
 <form>
   <input type="text">

@@ -2,7 +2,7 @@ import {Inject, inject, Injectable, signal} from '@angular/core';
 import {User, UserSubset} from './user';
 import {HttpClient} from '@angular/common/http';
 import {BASE_URL} from '../app.config';
-import {forkJoin} from 'rxjs';
+import {forkJoin, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,13 @@ export class UserService {
 
   getUserById(id: string): User | undefined {
     return this.users().find( usr => usr.id === id );
+  }
+
+  getUsrById (id: string) {
+    console.log( 'getUsrById', id );
+    return this.http.get<User>(`${this.url}/${id}`).pipe(
+      tap ( console.log )
+    );
   }
 
   addUser() { //todo add usr: User
