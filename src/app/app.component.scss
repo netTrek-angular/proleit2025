@@ -2,7 +2,7 @@ pl-countdown {
   width: 100%;
 }
 
-main {
+main, footer {
   width: 100%; /* Nimmt die volle Breite des übergeordneten Containers ein */
   display: block; /* Definiert das Element als Blockelement */
   padding: 5px; /* Fügt einen Innenabstand (Padding) hinzu, jedoch nur für größere Bildschirme */
@@ -14,4 +14,8 @@ main {
     margin: 0 auto; /* Zentriert das Element horizontal im Container */
   }
 
+}
+
+footer {
+  background-color: lightblue;
 }

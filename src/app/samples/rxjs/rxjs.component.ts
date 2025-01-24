@@ -21,9 +21,9 @@ export class RxjsComponent implements OnInit{
 
   ngOnInit(): void {
     // this.initOfSample()
-    this.initSubject ();
-    this.initEventSample()
-    // this.initHttpSample ();
+    // this.initSubject ();
+    // this.initEventSample()
+    this.initHttpSample ();
   }
 
   private initHttpSample () {

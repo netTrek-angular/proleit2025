@@ -14,3 +14,17 @@
   }
 
 }
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  min-width: 50px;
+  &.active {
+    color: white;
+    text-decoration: underline;
+  }
+  &:hover {
+    text-decoration: underline;
+    color: darkblue;
+  }
+}

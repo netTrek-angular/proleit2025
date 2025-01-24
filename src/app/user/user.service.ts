@@ -27,6 +27,7 @@ export class UserService {
 
   // constructor(@Inject(BASE_URL)private readonly baseUrl: string) {
   constructor() {
+    localStorage.setItem('token', 'das ist ein authentifuizierugh token');
     this.refreshUsrData();
   }
 
