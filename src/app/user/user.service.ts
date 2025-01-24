@@ -108,7 +108,6 @@ export class UserService {
       complete: () => this.refreshUsrData()
     })
   }
-
   patchUser(user: UserSubset) {
     this.http.patch( `${this.url}/${user.id}`, user ).subscribe( {
       complete: () => this.refreshUsrData()
