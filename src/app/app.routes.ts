@@ -5,6 +5,7 @@ import {UserDetailComponent} from './user/user-detail/user-detail.component';
 import {UserEditComponent} from './user/user-edit/user-edit.component';
 import {UserAddComponent} from './user/user-add/user-add.component';
 import {userDetailResolver} from './user/user-edit/user-detail.resolver';
+import {userGuard} from './user/user.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },   // domain/
@@ -16,6 +17,9 @@ export const routes: Routes = [
     }
   },
   { path: 'user', component: UserComponent,                       // domain/user
+    canActivate: [
+      userGuard
+    ],
     children: [                                                   // dard ich nur Niutzen wenn die HTML der UserComponetn ein router-outlet verfügt
       { path: 'show/:id', component: UserDetailComponent },            // domain/user/show/[idDesUSer]                  Detainansiihct
       { path: 'edit/:id', component: UserEditComponent,
