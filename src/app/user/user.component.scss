@@ -1,3 +1,23 @@
 h1  {
   color: darkcyan;
 }
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left-column {
+  box-sizing: border-box;
+  flex-grow: 1; /* Allow this column to grow to fill available space */
+}
+
+.right-column {
+  box-sizing: border-box;
+  max-width: 50%; /* Maximum width for the right column */
+}
+
+@media (max-width: 700px) {
+  .left-column, .right-column {
+    width: 100%;
+  }
+}

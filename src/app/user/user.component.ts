@@ -4,19 +4,22 @@ import {UserListComponent} from './user-list/user-list.component';
 import {DangerDirective} from '../utils/danger.directive';
 import {UserService} from './user.service';
 import {AdminOnlyDirective} from '../utils/admin-only.directive';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'pl-user',
   imports: [
     UserListComponent,
     DangerDirective,
-    AdminOnlyDirective
+    AdminOnlyDirective,
+    RouterOutlet
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-/*
+
+  /*
   readonly locale = inject( LOCALE_ID ); // injiziere die Local ID aus dem Root Provider
   readonly baseUrl = inject( BASE_URL ); // injiziere die Local ID aus dem Root Provider
   */

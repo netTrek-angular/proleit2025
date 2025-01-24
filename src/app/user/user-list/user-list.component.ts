@@ -1,19 +1,8 @@
-import {
-  /*AfterViewInit,*/
-  Component,
-  effect,
-  inject,
-  input,
-  OnDestroy,
-  /*OnInit,*/
-  output,
-  signal,
-  viewChild,
-  viewChildren
-} from '@angular/core';
+import {Component, effect, inject, input, OnDestroy, output, signal, viewChild, viewChildren} from '@angular/core';
 import {User} from '../user';
 import {UserListItemComponent} from './user-list-item/user-list-item.component';
 import {UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'pl-user-list',
@@ -25,6 +14,7 @@ import {UserService} from '../user.service';
 })
 export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
 
+  private readonly router = inject(Router);
 
   ngOnDestroy(): void {
     this.firstElemEffRef.destroy();
@@ -64,6 +54,11 @@ export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
   selectUsr(user: User) {
     this.selectedUser.update( crr_selected => user === crr_selected ? undefined : user);
     this.userSelected.emit(user);
+    if ( this.selectedUser() ) {
+      this.router.navigate( ['/user', user.id] );  // [router-Link] im Code Nutzen
+    } else {
+      this.router.navigate( ['/user']   );
+    }
   }
 
 

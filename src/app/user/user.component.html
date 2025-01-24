@@ -1,17 +1,22 @@
-<h1>user</h1>
-<!--
 
-<h1>user {{locale}} {{baseUrl}} {{$users.name}}</h1>
--->
+<div  class="left-column">
+  <!--<h1>user</h1>-->
 
-<pl-user-list [users]="$users.users()" (userSelected)="usrSelected($event)"></pl-user-list>
+  <pl-user-list [users]="$users.users()" (userSelected)="usrSelected($event)"></pl-user-list>
 
-<ng-container *plAdminOnly>
-  <button (click)="$users.addUser()">Add User</button> @if ($users.users().length > 0) { |
+  <ng-container *plAdminOnly>
+    <button (click)="$users.addUser()">Add User</button> @if ($users.users().length > 0) {
+    |
     @let selectedUsr = $users.selectedUsr();
-    @if (selectedUsr ) {
-      <button (confirmed)="$users.delUser( selectedUsr! )" plDanger="willst den dene User wirtklick löschen?">Del Selected User</button> |
+    @if (selectedUsr) {
+      <button (confirmed)="$users.delUser( selectedUsr! )" plDanger="willst den dene User wirtklick löschen?">Del
+        Selected User
+      </button> |
     }
     <button (confirmed)="$users.delAll()" plDanger>Del All User</button>
   }
-</ng-container>
+  </ng-container>
+</div>
+<div  class="right-column">
+  <router-outlet></router-outlet>
+</div>
