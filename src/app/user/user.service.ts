@@ -51,6 +51,10 @@ export class UserService {
     this._selectedUsr.set(selectedUsr);
   }
 
+  getUserById(id: string): User | undefined {
+    return this.users().find( usr => usr.id === id );
+  }
+
   addUser() { //todo add usr: User
     const uuid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     this.http.post<User>( this.url,
