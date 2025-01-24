@@ -1,4 +1,4 @@
-import {inject, Injectable, signal} from '@angular/core';
+import {Inject, inject, Injectable, signal} from '@angular/core';
 import {User, UserSubset} from './user';
 import {HttpClient} from '@angular/common/http';
 import {BASE_URL} from '../app.config';
@@ -25,6 +25,7 @@ export class UserService {
     return this._selectedUsr.asReadonly();
   }
 
+  // constructor(@Inject(BASE_URL)private readonly baseUrl: string) {
   constructor() {
     this.refreshUsrData();
   }

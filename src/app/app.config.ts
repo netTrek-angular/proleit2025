@@ -8,7 +8,7 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
 import {authInterceptorInterceptor} from './utils/auth-interceptor.interceptor';
 import {errrorInterceptor} from './utils/errror.interceptor';
 
@@ -21,6 +21,7 @@ export const appConfig: ApplicationConfig = { // root injector
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'},
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(
+      withFetch(),
       withInterceptors( [
         authInterceptorInterceptor,
         errrorInterceptor

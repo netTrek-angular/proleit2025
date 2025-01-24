@@ -1,5 +1,5 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import {BehaviorSubject, filter, fromEvent, map, Observable, of, Subject, take, tap} from 'rxjs';
+import {BehaviorSubject, filter, fromEvent, map, Observable, of, Subject, take, takeWhile, tap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../user/user';
@@ -21,9 +21,9 @@ export class RxjsComponent implements OnInit{
 
   ngOnInit(): void {
     // this.initOfSample()
-    // this.initEventSample()
-    // this.initSubject ();
-    this.initHttpSample ();
+    this.initSubject ();
+    this.initEventSample()
+    // this.initHttpSample ();
   }
 
   private initHttpSample () {
@@ -51,7 +51,10 @@ export class RxjsComponent implements OnInit{
   }
 
   private initOfSample () {
-    const myObservable$ = of ( 1, 2, 3 ).pipe(
+    const myObservable$ = of ( 1, 2 ,3 ).pipe(
+      // map ( value => value * 2 ),
+      // filter ( value => value > 2 ),
+      // takeWhile ( value => value < 2 ),
       tap ( value => console.log( 'rxjs tap', value ))
     );
     // console.log( 'rxjs init', myObservable$ );
@@ -71,6 +74,7 @@ export class RxjsComponent implements OnInit{
 
   private initSubject() {
     this.mySignal = signal( 1 );
+    // const wertEinesSignalsLesen = this.mySignal();
     this.mySignal.set( 111 );
     // const mySubject$ = new Subject<number>();
     this.mySubject$ = new BehaviorSubject<number>(1);
