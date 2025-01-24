@@ -1,7 +1,13 @@
 
-<form #myFomr=ngForm (ngSubmit)="onSubmit(myFomr.value)">
-  <input type="text" [(ngModel)]="name" name="name">
-  <input type="number" [(ngModel)]="age" name="age">
-  <button type="submit">send</button>
-  <button type="reset">rest</button>
+<form #myForm=ngForm (ngSubmit)="onSubmit(myForm.value)">
+  <input type="text" [(ngModel)]="name" name="name" required>
+  @let namErr = myForm.controls['name']?.errors;
+  @if( namErr && namErr['required'] ) {
+    <div>bitte trage einen Namen ein</div>
+  }
+  <input type="number" [(ngModel)]="age" name="age" [min]="18" [max]="100">
+  @if( myForm.controls['age']?.errors ) {
+    <div>Du musst 18 und älter sein</div>
+  }
+  <button type="submit" [disabled]="myForm.invalid"> send</button> |
 </form>

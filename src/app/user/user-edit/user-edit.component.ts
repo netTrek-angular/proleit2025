@@ -2,11 +2,12 @@ import {Component, effect, inject, input, OnDestroy, signal} from '@angular/core
 import {User} from '../user';
 import {FormsModule} from '@angular/forms';
 import {UserService} from '../user.service';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'pl-user-edit',
   imports: [
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './user-edit.component.html',
   styleUrl: './user-edit.component.scss'
