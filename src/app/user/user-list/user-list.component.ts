@@ -55,7 +55,7 @@ export class UserListComponent implements /*OnInit, AfterViewInit, */OnDestroy {
     this.selectedUser.update( crr_selected => user === crr_selected ? undefined : user);
     this.userSelected.emit(user);
     if ( this.selectedUser() ) {
-      this.router.navigate( ['/user', user.id] );  // [router-Link] im Code Nutzen
+      this.router.navigate( ['/user/show', user.id] );  // [router-Link] im Code Nutzen
     } else {
       this.router.navigate( ['/user']   );
     }

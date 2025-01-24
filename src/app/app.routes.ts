@@ -11,8 +11,8 @@ export const routes: Routes = [
   { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)},
   { path: 'user', component: UserComponent,                       // domain/user
     children: [                                                   // dard ich nur Niutzen wenn die HTML der UserComponetn ein router-outlet verfügt
-      { path: ':id', component: UserDetailComponent },            // domain/user/[idDesUSer]                  Detainansiihct
-      { path: ':id/edit', component: UserEditComponent },         // domain/user/[idDesUSer]/edit             Bearbeitungs Ansicht
+      { path: 'show/:id', component: UserDetailComponent },            // domain/user/show/[idDesUSer]                  Detainansiihct
+      { path: 'edit/:id', component: UserEditComponent },         // domain/user/edit/idDesUSer]             Bearbeitungs Ansicht
       { path: 'add', component: UserAddComponent },               // domain/user/add                          Ansicht zum Hinzufügen
     ]
   },

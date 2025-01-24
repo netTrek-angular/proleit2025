@@ -7,13 +7,13 @@ h1  {
 }
 
 .left-column {
-  box-sizing: border-box;
   flex-grow: 1; /* Allow this column to grow to fill available space */
 }
 
 .right-column {
-  box-sizing: border-box;
   max-width: 50%; /* Maximum width for the right column */
+  min-width: 30%; /* Maximum width for the right column */
+  margin-left: 10px;
 }
 
 @media (max-width: 700px) {

@@ -4,7 +4,7 @@ import {UserListComponent} from './user-list/user-list.component';
 import {DangerDirective} from '../utils/danger.directive';
 import {UserService} from './user.service';
 import {AdminOnlyDirective} from '../utils/admin-only.directive';
-import {RouterOutlet} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'pl-user',
@@ -12,7 +12,8 @@ import {RouterOutlet} from '@angular/router';
     UserListComponent,
     DangerDirective,
     AdminOnlyDirective,
-    RouterOutlet
+    RouterOutlet,
+    RouterLink
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'

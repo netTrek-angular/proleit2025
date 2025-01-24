@@ -3,9 +3,10 @@
   <!--<h1>user</h1>-->
 
   <pl-user-list [users]="$users.users()" (userSelected)="usrSelected($event)"></pl-user-list>
-
+  <!--<button (click)="$users.addUser()">Add User</button>-->
+  <button routerLink="/user/add">Add User</button>
   <ng-container *plAdminOnly>
-    <button (click)="$users.addUser()">Add User</button> @if ($users.users().length > 0) {
+    @if ($users.users().length > 0) {
     |
     @let selectedUsr = $users.selectedUsr();
     @if (selectedUsr) {
